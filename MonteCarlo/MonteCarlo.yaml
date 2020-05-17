@@ -1,0 +1,17 @@
+---
+title: 'Simulação de Monte-Carlo: Integração'
+author: "Eduardo Jacob"
+date: "2020-05-15"
+output:
+  rmarkdown::slidy_presentation: 
+    css: MonteCarlo.css  
+editor_options:
+  chunk_output_type: inline
+---
+
+---
+title: 'Simulação de Monte-Carlo: Integração'
+author: "Eduardo Jacob"
+date: "2020-05-15"
+output: github_document
+---
