@@ -49,7 +49,7 @@ $$ \left ( \frac{Pontos\: debaixo\: da\: curva }{Total\: de\: Pontos} \right ) \
 
 ## Exemplo de Solução 
 Para efectuar esta simulação, vamos repetir a experiencia proposta N vezes,
-e assim obter uma distribuição estatistica da proporção em causa
+e assim obter uma distribuição estatistica da proporção em causa   
 Implementando em linguagem de programação R, temos:
 
 ```{r,fig.align='center',echo=TRUE, collapse=TRUE}
