@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: Gestão e Plano de Formação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--
+        CONFIRMAÇÕES E RESUMOS EXIGIDOS:
+        1. Confirmo explicitamente que NEITHER Mermaid JS NOR SVG foram usados em qualquer parte deste output.
+        2. Paleta escolhida: "Vibrant Tech Corporate" (Deep Navy #0F172A, Electric Blue #3B82F6, Cyan #06B6D4, Orange #F97316).
+        3. Resumo do Plano (Narrativa):
+           - Intro: Definição estratégica do plano.
+           - Secção 1 (Diagnóstico): Radar chart comparando os métodos de levantamento de necessidades.
+           - Secção 2 (Objetivos): Estruturas Tailwind (Grid e Pirâmide) para SMART e Bloom.
+           - Secção 3 (Planeamento/Orçamento): Doughnut chart (Internos vs Externos) e Stacked Bar (Custos).
+           - Secção 4 (Avaliação/ROI): Diagrama de Kirkpatrick (HTML) e Line chart (Evolução do ROI).
+        4. Resumo das Escolhas Visuais (Infographic Chart Selection Guide):
+           - Métodos (Comparar/Organizar) -> Radar Chart (Chart.js, No SVG). Ideal para múltiplas variáveis numa mesma escala.
+           - Origem Formadores (Composição) -> Doughnut Chart (Chart.js, No SVG). Mostra a proporção simples.
+           - Orçamentação (Comparar Categorias) -> Stacked Bar (Chart.js, No SVG). Mostra a composição direta vs indireta ao longo do tempo.
+           - Impacto ROI (Mudança no Tempo) -> Line Chart (Chart.js, No SVG). Ideal para mostrar tendências.
+           - Taxonomia/Processos (Organizar/Hierarquia) -> Estruturas Flexbox/Grid Tailwind (No SVG). Substitui Diagramas de Venn/Flowcharts complexos.
+    -->
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        body {
+            background-color: #F8FAFC;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 font-sans antialiased">
+
+    <header class="bg-[#0F172A] text-white py-16 px-6 border-b-8 border-[#F97316]">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="text-5xl mb-4">📈</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">O Ciclo de Vida do Plano de Formação</h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">Um guia estratégico e analítico baseado nos pilares da Gestão da Formação Corporativa, desenhado para transformar lacunas de competências em resultados de negócio (ROI).</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <section class="bg-white rounded-2xl p-8 card-shadow border-t-4 border-[#3B82F6]">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-[#0F172A] flex items-center gap-3">
+                    <span class="text-3xl">🔍</span> 1. Diagnóstico e Análise de Necessidades
+                </h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    A fundação de um plano eficaz não é uma simples lista de cursos, mas a distinção clara entre o <strong>diagnóstico</strong> (identificar a "doença" ou lacuna) e a <strong>análise</strong> (estudar a viabilidade da solução). O gráfico abaixo ilustra a eficácia relativa dos métodos de recolha de dados utilizados pelas organizações.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="chart-container">
+                    <canvas id="diagnosticoChart"></canvas>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="text-xl font-semibold text-[#0F172A] mb-4">Principais Instrumentos</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#3B82F6] font-bold text-xl">➔</span>
+                            <div>
+                                <strong class="text-slate-800">Avaliação de Desempenho:</strong> O método mais rico, cruzando as metas individuais com as falhas de execução.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#3B82F6] font-bold text-xl">➔</span>
+                            <div>
+                                <strong class="text-slate-800">Análise de Erros / KPIs:</strong> Dados objetivos do negócio que revelam estrangulamentos operacionais.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#3B82F6] font-bold text-xl">➔</span>
+                            <div>
+                                <strong class="text-slate-800">Questionários & Entrevistas:</strong> Úteis para recolher a perceção direta dos colaboradores e chefias.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl p-8 card-shadow border-t-4 border-[#06B6D4]">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-[#0F172A] flex items-center gap-3">
+                    <span class="text-3xl">🎯</span> 2. Definição de Objetivos (SMART & Bloom)
+                </h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    Para que a formação não seja um desperdício de recursos, os objetivos devem ser balizados por métricas acionáveis (SMART) e estratificados pelo nível de profundidade cognitiva exigida ao formando (Taxonomia de Bloom).
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-center text-[#0F172A] mb-6">Metodologia S.M.A.R.T.</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div class="bg-[#0F172A] text-white p-4 rounded-lg shadow flex items-center gap-4">
+                            <div class="text-3xl font-black text-[#06B6D4]">S</div>
+                            <div><strong class="block text-lg">Específicos (Specific)</strong>Claros e sem ambiguidades sobre o que atingir.</div>
+                        </div>
+                        <div class="bg-[#1E293B] text-white p-4 rounded-lg shadow flex items-center gap-4">
+                            <div class="text-3xl font-black text-[#3B82F6]">M</div>
+                            <div><strong class="block text-lg">Mensuráveis (Measurable)</strong>Quantificáveis para permitir a avaliação.</div>
+                        </div>
+                        <div class="bg-[#334155] text-white p-4 rounded-lg shadow flex items-center gap-4">
+                            <div class="text-3xl font-black text-[#F97316]">A</div>
+                            <div><strong class="block text-lg">Atingíveis (Achievable)</strong>Realistas perante os recursos disponíveis.</div>
+                        </div>
+                        <div class="bg-[#475569] text-white p-4 rounded-lg shadow flex items-center gap-4">
+                            <div class="text-3xl font-black text-[#F59E0B]">R</div>
+                            <div><strong class="block text-lg">Relevantes (Relevant)</strong>Alinhados com as metas globais da empresa.</div>
+                        </div>
+                        <div class="bg-[#64748B] text-white p-4 rounded-lg shadow flex items-center gap-4">
+                            <div class="text-3xl font-black text-[#22D3EE]">T</div>
+                            <div><strong class="block text-lg">Temporais (Time-bound)</strong>Com um prazo definido para a sua execução.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-center text-[#0F172A] mb-6">Taxonomia de Bloom (Hierarquia)</h3>
+                    <div class="flex flex-col items-center w-full space-y-1 h-full justify-center">
+                        <div class="w-2/6 bg-[#0F172A] text-white text-center py-3 rounded-t-xl font-bold shadow transition-all hover:scale-105 cursor-default">Criar</div>
+                        <div class="w-3/6 bg-[#1E3A8A] text-white text-center py-3 font-bold shadow transition-all hover:scale-105 cursor-default">Avaliar</div>
+                        <div class="w-4/6 bg-[#1D4ED8] text-white text-center py-3 font-bold shadow transition-all hover:scale-105 cursor-default">Analisar</div>
+                        <div class="w-5/6 bg-[#2563EB] text-white text-center py-3 font-bold shadow transition-all hover:scale-105 cursor-default">Aplicar</div>
+                        <div class="w-11/12 bg-[#3B82F6] text-white text-center py-3 font-bold shadow transition-all hover:scale-105 cursor-default">Compreender</div>
+                        <div class="w-full bg-[#60A5FA] text-slate-900 text-center py-3 rounded-b-xl font-bold shadow transition-all hover:scale-105 cursor-default">Recordar (Base)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl p-8 card-shadow border-t-4 border-[#F97316]">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-[#0F172A] flex items-center gap-3">
+                    <span class="text-3xl">⚙️</span> 3. Planeamento e Operacionalização
+                </h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    A execução do plano exige a decisão entre recorrer a talentos internos ou externos, bem como uma orçamentação rigorosa que contemple não apenas os custos diretos, mas também os custos de oportunidade (horas não trabalhadas).
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="flex flex-col">
+                    <h3 class="text-xl font-semibold text-center text-[#0F172A] mb-4">Origem da Formação (Mercado Típico)</h3>
+                    <div class="chart-container flex-grow">
+                        <canvas id="origemChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center text-slate-500 mt-4">Formadores internos dominam pelo profundo conhecimento do negócio, enquanto os externos trazem inovação e certificações obrigatórias.</p>
+                </div>
+                
+                <div class="flex flex-col">
+                    <h3 class="text-xl font-semibold text-center text-[#0F172A] mb-4">Decomposição de Orçamento Anual</h3>
+                    <div class="chart-container flex-grow">
+                        <canvas id="orcamentoChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center text-slate-500 mt-4">Note que o <strong>Custo Indireto</strong> (tempo dos formandos fora do posto de trabalho) representa frequentemente a maior fatia do investimento real.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#0F172A] rounded-2xl p-8 card-shadow border-t-4 border-[#EAB308]">
+            <div class="mb-10 text-white">
+                <h2 class="text-3xl font-bold flex items-center gap-3">
+                    <span class="text-3xl">📈</span> 4. Avaliação e ROI (Modelo de Kirkpatrick)
+                </h2>
+                <p class="mt-4 text-slate-300 text-lg leading-relaxed">
+                    A formação só está concluída quando o seu impacto é medido. O modelo de Kirkpatrick define 4 níveis de eficácia, culminando na análise do Retorno sobre o Investimento (ROI), que traduz a aprendizagem em ganhos financeiros para a empresa.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+                <div class="bg-white p-6 rounded-xl text-center shadow-lg relative">
+                    <div class="text-4xl mb-2">😊</div>
+                    <h4 class="font-bold text-[#0F172A] text-lg">Nível 1: Reação</h4>
+                    <p class="text-sm text-slate-600 mt-2">Satisfação dos formandos com o formador, conteúdos e logística.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl text-center shadow-lg relative">
+                    <div class="text-4xl mb-2">🧠</div>
+                    <h4 class="font-bold text-[#0F172A] text-lg">Nível 2: Aprendizagem</h4>
+                    <p class="text-sm text-slate-600 mt-2">Avaliação de conhecimentos retidos e novas competências adquiridas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl text-center shadow-lg relative border-2 border-[#3B82F6]">
+                    <div class="text-4xl mb-2">🛠️</div>
+                    <h4 class="font-bold text-[#3B82F6] text-lg">Nível 3: Comportamento</h4>
+                    <p class="text-sm text-slate-600 mt-2">Transferência real da aprendizagem para as tarefas no posto de trabalho.</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#F97316] to-[#EAB308] p-6 rounded-xl text-center shadow-lg relative text-white">
+                    <div class="text-4xl mb-2">💰</div>
+                    <h4 class="font-bold text-white text-lg">Nível 4: Resultados</h4>
+                    <p class="text-sm text-white/90 mt-2">Impacto em KPIs de negócio (produtividade, vendas, redução de erros) e ROI.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-center text-[#0F172A] mb-4">Projeção de Impacto: Custos vs. Ganho de Produtividade</h3>
+                <div class="chart-container">
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-100 border-t border-slate-200 py-8 text-center mt-12">
+        <p class="text-slate-500 font-medium">Dashboard Analítico SPA • Baseado nas metodologias de Gestão de Formação</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label) => {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 <= 16) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const universalTooltip = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    }
+                    return label;
+                }
+            }
+        };
+
+        Chart.defaults.font.family = "'Inter', 'Segoe UI', Roboto, sans-serif";
+        Chart.defaults.color = '#475569';
+
+        const ctxRadar = document.getElementById('diagnosticoChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabel('Avaliação de Desempenho'),
+                    wrapLabel('Análise de KPIs de Erro'),
+                    wrapLabel('Questionários Diretos'),
+                    wrapLabel('Entrevistas Individuais'),
+                    wrapLabel('Observação Direta')
+                ],
+                datasets: [{
+                    label: 'Índice de Utilização (%)',
+                    data: [90, 80, 65, 50, 40],
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                    borderColor: '#06B6D4',
+                    pointBackgroundColor: '#0F172A',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#0F172A',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#E2E8F0' },
+                        grid: { color: '#E2E8F0' },
+                        pointLabels: { font: { size: 12, weight: 'bold' }, color: '#0F172A' },
+                        ticks: { backdropColor: 'transparent', stepSize: 20, max: 100 }
+                    }
+                },
+                plugins: {
+                    tooltip: universalTooltip,
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const ctxDoughnut = document.getElementById('origemChart').getContext('2d');
+        new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    wrapLabel('Formadores Internos (Know-how)'),
+                    wrapLabel('Entidades Externas (Certificação)')
+                ],
+                datasets: [{
+                    data: [65, 35],
+                    backgroundColor: ['#3B82F6', '#F97316'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    tooltip: universalTooltip,
+                    legend: { position: 'bottom', labels: { padding: 20, font: { weight: 'bold' } } }
+                }
+            }
+        });
+
+        const ctxStacked = document.getElementById('orcamentoChart').getContext('2d');
+        new Chart(ctxStacked, {
+            type: 'bar',
+            data: {
+                labels: ['Trimestre 1', 'Trimestre 2', 'Trimestre 3', 'Trimestre 4'],
+                datasets: [
+                    {
+                        label: 'Custos Diretos (€)',
+                        data: [15000, 18000, 12000, 22000],
+                        backgroundColor: '#0F172A',
+                    },
+                    {
+                        label: 'Custos Indiretos (Horas) (€)',
+                        data: [35000, 40000, 28000, 48000],
+                        backgroundColor: '#EAB308',
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: { stacked: true, grid: { display: false } },
+                    y: { stacked: true, border: { dash: [4, 4] }, grid: { color: '#E2E8F0' } }
+                },
+                plugins: {
+                    tooltip: universalTooltip,
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        const ctxLine = document.getElementById('roiChart').getContext('2d');
+        new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: ['Mês 1 (Formação)', 'Mês 2', 'Mês 3', 'Mês 4', 'Mês 5', 'Mês 6 (ROI)'],
+                datasets: [
+                    {
+                        label: 'Investimento Acumulado (Índice)',
+                        data: [100, 120, 130, 130, 130, 130],
+                        borderColor: '#F97316',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'Ganhos de Produtividade (Índice)',
+                        data: [0, 10, 40, 90, 150, 210],
+                        borderColor: '#06B6D4',
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        pointBackgroundColor: '#06B6D4',
+                        pointRadius: 6,
+                        tension: 0.3,
+                        borderWidth: 3
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { border: { dash: [4, 4] }, grid: { color: '#E2E8F0' } }
+                },
+                plugins: {
+                    tooltip: universalTooltip,
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
